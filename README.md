@@ -91,8 +91,7 @@ endpoint裡面有 `-4` 和 `-6` ，可以自訂義增加別的，或是只使用
 generate_config_func.py 說明
 ------
 
-隧道具體的建立方式，在這邊定義。我目前已經完成 None, "wg" , "wg_udp2raw" , "gre"  
-"openvpn"則尚未完成  
+隧道具體的建立方式，在這邊定義。我目前已經完成 None, "wg" , "wg_udp2raw" , "gre" , "openvpn"  
 ![image](https://user-images.githubusercontent.com/73118488/155201953-5587acf5-6ab2-4882-bfb3-cf2b773f1b71.png)  
 get_gre / get_wg_udp2raw / get_wg / get_openvpn 四個function會回傳具體的設定檔，up/down腳本  
 
