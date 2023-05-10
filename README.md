@@ -13,7 +13,8 @@ ospf-ibgp-generator
 1. 啟動時，執行 `up.sh` 建立隧道
 2. 定時執行 `update.sh` 進行 DDNS 更新
 3. 定時執行 `update_cost.py` 測量隧道延遲，更新進 ospf 設定檔
-4. 不想用了，執行 `down.sh` 刪除所有隧道
+4. bird 設定檔裡面 include `/output/xxxx/bird/*.conf` 檔案
+5. 不用了，執行 `down.sh` 刪除所有隧道
 
 all_node.yaml 說明
 -----
