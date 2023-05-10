@@ -66,18 +66,18 @@ ip_de2_4=$(resolveip hz.moe.de.kskb.moe)
 
 
 if get_ip_down "fe80::1817:c" "dn42-cnjs-4"; then
-    update_wg_peer dn42-cnjs-4 "OPfWD88pEx4nWIn/YB836bmw/I7a+P4TyuAgGmOGPys=" "$ip_cnjs_4:42080" "igp_tunnels/dn42-cnjs-4.conf"
+    update_wg_peer dn42-cnjs-4 "ufa7Qg2MfpU1LW+EuykuAML7x6bhEFmIbmE0hNJnl1o=" "$ip_cnjs_4:42080" "igp_tunnels/dn42-cnjs-4.conf"
 fi
 if get_ip_down "fe80::1817:10" "dn42-cnzj-4"; then
-    update_wg_peer dn42-cnzj-4 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_4:14887" "igp_tunnels/dn42-cnzj-4.conf"
+    update_wg_peer dn42-cnzj-4 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_4:14887" "igp_tunnels/dn42-cnzj-4.conf"
 fi
 if get_ip_down "fe80::1817:11" "dn42-cnwh-4"; then
-    update_wg_peer dn42-cnwh-4 "fj22pOMiyymiRu49Ak0mpKH9jRZ/Vc376ifZz2Hq4h0=" "$ip_cnwh_4:21203" "igp_tunnels/dn42-cnwh-4.conf"
+    update_wg_peer dn42-cnwh-4 "vCXKwLHiiGlXb2wHiEsZXUERh+fzA/lM230zG4UNYyQ=" "$ip_cnwh_4:21203" "igp_tunnels/dn42-cnwh-4.conf"
 fi
 if get_ip_down "fe80::1817:13" "dn42-cncs-4"; then
-    update_wg_peer dn42-cncs-4 "j5xSk2xuVKgAADdT+3R4L//CWAMfgM3Wy9vcIF2TQQM=" "$ip_cncs_4:31987" "igp_tunnels/dn42-cncs-4.conf"
+    update_wg_peer dn42-cncs-4 "NueWyuYQYZo8lB6X8Jd/mShJeNH4UlboiAJ8kZdZFXM=" "$ip_cncs_4:31987" "igp_tunnels/dn42-cncs-4.conf"
 fi
 
 
-wg set dn42-cnzj-4 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_4:14887"
-wg set dn42-cnwh-4 peer "fj22pOMiyymiRu49Ak0mpKH9jRZ/Vc376ifZz2Hq4h0=" endpoint "$ip_cnwh_4:21203"
+wg set dn42-cnzj-4 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_4:14887"
+wg set dn42-cnwh-4 peer "vCXKwLHiiGlXb2wHiEsZXUERh+fzA/lM230zG4UNYyQ=" endpoint "$ip_cnwh_4:21203"

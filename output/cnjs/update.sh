@@ -66,8 +66,8 @@ ip_cnsc_4=$(resolveip 4.cnsc.kskb.moe)
 
 
 if get_ip_down "fe80::1817:10" "dn42-cnzj-4"; then
-    update_wg_peer dn42-cnzj-4 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_4:14878" "igp_tunnels/dn42-cnzj-4.conf"
+    update_wg_peer dn42-cnzj-4 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_4:14878" "igp_tunnels/dn42-cnzj-4.conf"
 fi
 
 
-wg set dn42-cnzj-4 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_4:14878"
+wg set dn42-cnzj-4 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_4:14878"

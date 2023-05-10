@@ -74,33 +74,33 @@ ip_cnsc_4=$(resolveip 4.cnsc.kskb.moe)
 
 
 if get_ip_down "fe80::1817:a" "dn42-de-6"; then
-    update_wg_peer dn42-de-6 "bEGjgZ0gabtfilwb4Z+2IV4ytlTgEu0VhAtvl1V+mSk=" "$ip_de_6:18003" "igp_tunnels/dn42-de-6.conf"
+    update_wg_peer dn42-de-6 "QVCvhxPMyCLPsMyR4eoJfGBO0SES4QS7u5KN+H4K3y4=" "$ip_de_6:18003" "igp_tunnels/dn42-de-6.conf"
 fi
 if get_ip_down "fe80::1817:c" "dn42-cnjs-4"; then
-    update_wg_peer dn42-cnjs-4 "OPfWD88pEx4nWIn/YB836bmw/I7a+P4TyuAgGmOGPys=" "$ip_cnjs_4:42073" "igp_tunnels/dn42-cnjs-4.conf"
+    update_wg_peer dn42-cnjs-4 "ufa7Qg2MfpU1LW+EuykuAML7x6bhEFmIbmE0hNJnl1o=" "$ip_cnjs_4:42073" "igp_tunnels/dn42-cnjs-4.conf"
 fi
 if get_ip_down "fe80::1817:10" "dn42-cnzj-4"; then
-    update_wg_peer dn42-cnzj-4 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_4:14875" "igp_tunnels/dn42-cnzj-4.conf"
+    update_wg_peer dn42-cnzj-4 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_4:14875" "igp_tunnels/dn42-cnzj-4.conf"
 fi
 if get_ip_down "fe80::1817:10" "dn42-cnzj-6"; then
-    update_wg_peer dn42-cnzj-6 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_6:14876" "igp_tunnels/dn42-cnzj-6.conf"
+    update_wg_peer dn42-cnzj-6 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_6:14876" "igp_tunnels/dn42-cnzj-6.conf"
 fi
 if get_ip_down "fe80::1817:12" "dn42-cngd-6"; then
-    update_wg_peer dn42-cngd-6 "DoLZhYaX05QJgPfQxd+Kp8SCj21uR7pSZi/JBmyNP1o=" "$ip_cngd_6:18003" "igp_tunnels/dn42-cngd-6.conf"
+    update_wg_peer dn42-cngd-6 "7WZMs3Qh6gon+PX6Iz5IzBTIeE+TQMwWVu/PAG1OH0I=" "$ip_cngd_6:18003" "igp_tunnels/dn42-cngd-6.conf"
 fi
 if get_ip_down "fe80::1817:13" "dn42-cncs-4"; then
-    update_wg_peer dn42-cncs-4 "j5xSk2xuVKgAADdT+3R4L//CWAMfgM3Wy9vcIF2TQQM=" "$ip_cncs_4:31983" "igp_tunnels/dn42-cncs-4.conf"
+    update_wg_peer dn42-cncs-4 "NueWyuYQYZo8lB6X8Jd/mShJeNH4UlboiAJ8kZdZFXM=" "$ip_cncs_4:31983" "igp_tunnels/dn42-cncs-4.conf"
 fi
 if get_ip_down "fe80::1817:14" "dn42-usfmt2-4"; then
-    update_wg_peer dn42-usfmt2-4 "AQJPoutD8D0YMUS2BOrhE0Drlzce4LQOO2ZK1UY8JRg=" "$ip_usfmt2_4:18003" "igp_tunnels/dn42-usfmt2-4.conf"
+    update_wg_peer dn42-usfmt2-4 "lkJVxOPx1EIt2YINSpTD+jFcN36pnCvHWXD6QG3DqjM=" "$ip_usfmt2_4:18003" "igp_tunnels/dn42-usfmt2-4.conf"
 fi
 if get_ip_down "fe80::1817:15" "dn42-de2-4"; then
-    update_wg_peer dn42-de2-4 "aHAbIRzMq9y9w48hMOhS4/HwhVD6zU6Jn3ESFbFxDHE=" "$ip_de2_4:13487" "igp_tunnels/dn42-de2-4.conf"
+    update_wg_peer dn42-de2-4 "2JYyWk0jF4PA6c77t6BZRgGP9qqw8Df5ixTiFPQX8yY=" "$ip_de2_4:13487" "igp_tunnels/dn42-de2-4.conf"
 fi
 if get_ip_down "fe80::1817:15" "dn42-de2-6"; then
-    update_wg_peer dn42-de2-6 "aHAbIRzMq9y9w48hMOhS4/HwhVD6zU6Jn3ESFbFxDHE=" "$ip_de2_6:13488" "igp_tunnels/dn42-de2-6.conf"
+    update_wg_peer dn42-de2-6 "2JYyWk0jF4PA6c77t6BZRgGP9qqw8Df5ixTiFPQX8yY=" "$ip_de2_6:13488" "igp_tunnels/dn42-de2-6.conf"
 fi
 
 
-wg set dn42-cnzj-4 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_4:14875"
-wg set dn42-cnzj-6 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_6:14876"
+wg set dn42-cnzj-4 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_4:14875"
+wg set dn42-cnzj-6 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_6:14876"

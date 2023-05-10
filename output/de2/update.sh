@@ -74,15 +74,15 @@ ip_cnsc_4=$(resolveip 4.cnsc.kskb.moe)
 
 
 if get_ip_down "fe80::1817:c" "dn42-cnjs-4"; then
-    update_wg_peer dn42-cnjs-4 "OPfWD88pEx4nWIn/YB836bmw/I7a+P4TyuAgGmOGPys=" "$ip_cnjs_4:42079" "igp_tunnels/dn42-cnjs-4.conf"
+    update_wg_peer dn42-cnjs-4 "ufa7Qg2MfpU1LW+EuykuAML7x6bhEFmIbmE0hNJnl1o=" "$ip_cnjs_4:42079" "igp_tunnels/dn42-cnjs-4.conf"
 fi
 if get_ip_down "fe80::1817:10" "dn42-cnzj-4"; then
-    update_wg_peer dn42-cnzj-4 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_4:14885" "igp_tunnels/dn42-cnzj-4.conf"
+    update_wg_peer dn42-cnzj-4 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_4:14885" "igp_tunnels/dn42-cnzj-4.conf"
 fi
 if get_ip_down "fe80::1817:10" "dn42-cnzj-6"; then
-    update_wg_peer dn42-cnzj-6 "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" "$ip_cnzj_6:14886" "igp_tunnels/dn42-cnzj-6.conf"
+    update_wg_peer dn42-cnzj-6 "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" "$ip_cnzj_6:14886" "igp_tunnels/dn42-cnzj-6.conf"
 fi
 
 
-wg set dn42-cnzj-4 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_4:14885"
-wg set dn42-cnzj-6 peer "+g0GBYWJLj4/48IdRNsNtgWrQGqwr5q0bJHySW3qBjs=" endpoint "$ip_cnzj_6:14886"
+wg set dn42-cnzj-4 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_4:14885"
+wg set dn42-cnzj-6 peer "e/lg8d/pOJA3sEBqrdTNZ6dMd5ZRCXR0oNfXQW5KIjw=" endpoint "$ip_cnzj_6:14886"
