@@ -36,6 +36,7 @@ wg setconf dn42-tw-4 igp_tunnels/dn42-tw-4.conf
 ip link set dn42-tw-4 up
 ip link set mtu 1432 dev dn42-tw-4
 ip addr add 192.168.42.12/27 dev dn42-tw-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-tw-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-tw-4
 ip addr add fe80::1817:c/64 dev dn42-tw-4 scope link
 
@@ -45,6 +46,7 @@ wg setconf dn42-jp-4 igp_tunnels/dn42-jp-4.conf
 ip link set dn42-jp-4 up
 ip link set mtu 1440 dev dn42-jp-4
 ip addr add 192.168.42.12/27 dev dn42-jp-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-jp-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-jp-4
 ip addr add fe80::1817:c/64 dev dn42-jp-4 scope link
 
@@ -54,6 +56,7 @@ wg setconf dn42-hk-4 igp_tunnels/dn42-hk-4.conf
 ip link set dn42-hk-4 up
 ip link set mtu 1440 dev dn42-hk-4
 ip addr add 192.168.42.12/27 dev dn42-hk-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-hk-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-hk-4
 ip addr add fe80::1817:c/64 dev dn42-hk-4 scope link
 
@@ -63,6 +66,7 @@ wg setconf dn42-usfmt-4 igp_tunnels/dn42-usfmt-4.conf
 ip link set dn42-usfmt-4 up
 ip link set mtu 1440 dev dn42-usfmt-4
 ip addr add 192.168.42.12/27 dev dn42-usfmt-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-usfmt-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-usfmt-4
 ip addr add fe80::1817:c/64 dev dn42-usfmt-4 scope link
 
@@ -71,6 +75,7 @@ wg setconf dn42-de-4 igp_tunnels/dn42-de-4.conf
 ip link set dn42-de-4 up
 ip link set mtu 1440 dev dn42-de-4
 ip addr add 192.168.42.12/27 dev dn42-de-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-de-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-de-4
 ip addr add fe80::1817:c/64 dev dn42-de-4 scope link
 
@@ -80,6 +85,7 @@ wg setconf dn42-cnzj-4 igp_tunnels/dn42-cnzj-4.conf
 ip link set dn42-cnzj-4 up
 ip link set mtu 1420 dev dn42-cnzj-4
 ip addr add 192.168.42.12/27 dev dn42-cnzj-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-cnzj-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-cnzj-4
 ip addr add fe80::1817:c/64 dev dn42-cnzj-4 scope link
 
@@ -89,6 +95,7 @@ wg setconf dn42-cnwh-4 igp_tunnels/dn42-cnwh-4.conf
 ip link set dn42-cnwh-4 up
 ip link set mtu 1432 dev dn42-cnwh-4
 ip addr add 192.168.42.12/27 dev dn42-cnwh-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-cnwh-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-cnwh-4
 ip addr add fe80::1817:c/64 dev dn42-cnwh-4 scope link
 
@@ -97,6 +104,7 @@ wg setconf dn42-cngd-4 igp_tunnels/dn42-cngd-4.conf
 ip link set dn42-cngd-4 up
 ip link set mtu 1360 dev dn42-cngd-4
 ip addr add 192.168.42.12/27 dev dn42-cngd-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-cngd-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-cngd-4
 ip addr add fe80::1817:c/64 dev dn42-cngd-4 scope link
 
@@ -106,6 +114,7 @@ wg setconf dn42-cncs-4 igp_tunnels/dn42-cncs-4.conf
 ip link set dn42-cncs-4 up
 ip link set mtu 1440 dev dn42-cncs-4
 ip addr add 192.168.42.12/27 dev dn42-cncs-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-cncs-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-cncs-4
 ip addr add fe80::1817:c/64 dev dn42-cncs-4 scope link
 
@@ -115,6 +124,7 @@ wg setconf dn42-usfmt2-4 igp_tunnels/dn42-usfmt2-4.conf
 ip link set dn42-usfmt2-4 up
 ip link set mtu 1420 dev dn42-usfmt2-4
 ip addr add 192.168.42.12/27 dev dn42-usfmt2-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-usfmt2-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-usfmt2-4
 ip addr add fe80::1817:c/64 dev dn42-usfmt2-4 scope link
 
@@ -124,6 +134,7 @@ wg setconf dn42-de2-4 igp_tunnels/dn42-de2-4.conf
 ip link set dn42-de2-4 up
 ip link set mtu 1440 dev dn42-de2-4
 ip addr add 192.168.42.12/27 dev dn42-de2-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-de2-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-de2-4
 ip addr add fe80::1817:c/64 dev dn42-de2-4 scope link
 
@@ -133,6 +144,7 @@ wg setconf dn42-cnsc-4 igp_tunnels/dn42-cnsc-4.conf
 ip link set dn42-cnsc-4 up
 ip link set mtu 1440 dev dn42-cnsc-4
 ip addr add 192.168.42.12/27 dev dn42-cnsc-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-cnsc-4
 ip addr add fd07:d159:fc38:c::1/128 dev dn42-cnsc-4
 ip addr add fe80::1817:c/64 dev dn42-cnsc-4 scope link
 

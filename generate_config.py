@@ -136,10 +136,10 @@ for id, node in gen_conf["node_list"].items():
                         integrate_up = False
                     conf["up"] = f'{get_bash_var_name(side2["endpoint_ip"][1:])}=$(resolveip {side2["endpoint"]})\n' + conf["up"] if side2["endpoint"] != "NAT" else conf["up"]
                     if integrate_up:
-                        conf["up"] += "\n" + setiptemplate.render(ifname=side2["ifname"],MTU=MTU,ipv4=get_v4(idd,net4),ipv6=get_v6(idd,net6),ipv6ll=get_v6ll(idd,net6ll),v4_prefixlen=prefixlen(net4))
+                        conf["up"] += "\n" + setiptemplate.render(ifname=side2["ifname"],MTU=MTU,ipv4=get_v4(idd,net4),ipv4net= get_v4(0,net4),ipv6=get_v6(idd,net6),ipv6ll=get_v6ll(idd,net6ll),v4_prefixlen=prefixlen(net4))
                     else:
                         setupipsh = "#!/bin/bash\n"
-                        setupipsh += setiptemplate.render(ifname=side2["ifname"],MTU=MTU,ipv4=get_v4(idd,net4),ipv6=get_v6(idd,net6),ipv6ll=get_v6ll(idd,net6ll),v4_prefixlen=prefixlen(net4))
+                        setupipsh += setiptemplate.render(ifname=side2["ifname"],MTU=MTU,ipv4=get_v4(idd,net4),ipv4net= get_v4(0,net4),ipv6=get_v6(idd,net6),ipv6ll=get_v6ll(idd,net6ll),v4_prefixlen=prefixlen(net4))
                         setupipsh = jinja2.Template(setupipsh).render(confpath = side2["ifname"],setupippath="igp_tunnels/" + side2["ifname"]+"_setip.sh",v4_prefixlen=prefixlen(net4))
                         conf["confs"]["_setip.sh"] = setupipsh
                     # resolvip
@@ -200,6 +200,7 @@ for s,sps in result.items():
         'allow_nets_v4': gen_conf["network"]["v4"],
         'allow_nets_v6': gen_conf["network"]["v6"],
         'ipv4': get_v4(sps["id"],net4),
+        'ipv4net': get_v4(0,net4),
         'ipv6': get_v6(sps["id"],net6),
         'v4_prefixlen': prefixlen(net4),
         'v6_prefixlen': prefixlen(net6),

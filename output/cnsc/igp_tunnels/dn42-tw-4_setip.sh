@@ -3,6 +3,7 @@ ip link set dn42-tw-4 up
 ip link set mtu 1452 dev dn42-tw-4
 
 ip addr add 192.168.42.22/27 dev dn42-tw-4 metric 4294967295
+ip route del broadcast 192.168.42.0 dev dn42-tw-4
 
 ip addr add fd07:d159:fc38:16::1/128 dev dn42-tw-4
 
