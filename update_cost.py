@@ -41,7 +41,7 @@ def get_cost(ifname,address):
     if result["packet_loss"] == 1 or result["latency"] == {}:
         return max_cost
     cost = int(result["latency"]["avg"] * (1/1-result["packet_loss"]))
-    return min(max(1,cost),max_cost)
+    return min(max(1,cost),max_cost) + 10
 
 for ifname,address in clients.items():
     cost[ifname.replace("-","_")] = get_cost(ifname,address)
