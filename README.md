@@ -5,16 +5,38 @@ ospf-ibgp-generator
 2. 把 `generate_config_func.py` 複製到 input 資料夾
 3. 修改 `input/all_node.yaml`
 4. 執行 `python3 generate_config.py`
-5. 本專案不會對電腦系統做出任何變更。只是生成一大堆 wireguard 設定檔，自己部屬去對應節點自己執行
+5. 本專案不會對電腦系統做出任何變更。只是生成一大堆 wireguard 設定檔，需自行部屬去對應節點自己執行
 
 使用說明
 -----
 
-1. 啟動時，執行 `up.sh` 建立隧道
-2. 定時執行 `update.sh` 進行 DDNS 更新
-3. 定時執行 `update_cost.py` 測量隧道延遲，更新進 ospf 設定檔
+1. `up.sh` 建立隧道。開機時執行
+2. `update.sh` 進行 DDNS 更新隧道 endpoint。需定時執行
+3. `update_cost.py` 測量隧道延遲，更新進 ospf 設定檔。需定時執行
 4. bird 設定檔裡面 include `/output/xxxx/bird/*.conf` 檔案
-5. 不用了，執行 `down.sh` 刪除所有隧道
+5. `down.sh` 刪除所有隧道。關閉網路時執行
+
+Known Issue
+-----
+使用於公網隧道互聯，尚未實現隧道本身的路由表和 main 路由表分表的功能  
+
+一般情況下， bird 會寫入路由到 main 表。但是隧道也根據 main 表決定封包走向，會導致 loop  
+DN42 網路不影響，因為隧道 endpoint 是公網 IP，而 DN42 路由表和隧道 endpoint 絕對不會重疊  
+現行解決方案只能是 v6 only network 只使用 ipv4 打隧道，而 v4+v6 雙線只能自行打隧道，使用 phys 類型  
+
+* `wg`: 需使用 fwmark + `ip rule add fwmark xxx lookup xxx` 實現 wg 隧道不走 main 表
+* `gre`: 指定  src ip + `ip rule add from x.x.x.x lookup xxx` 實現 gre 隧道本身不走 main 表
+
+UDP 打洞
+-----
+現行策略是雙邊都是 NAT ，兩邊就不會互連，需靠有公網的伺服器中轉。具體走哪台中轉就看 ospf 選路  
+理論上，使用 `wg` 是可以進行 udp 打洞的，過程如下:
+
+* 每分鐘進行一次 DDNS 更新
+* 每分鐘進行一次 update ，把 wg 指向對面的 endpoint
+* 雙方互相連向對方的 endpoint:port ，NAT 偵測到雙邊通訊以後，建立起 NAT entry 打洞成功
+
+只是我暫時用不到，所以我沒有實現。　PR is welecome
 
 all_node.yaml 說明
 -----

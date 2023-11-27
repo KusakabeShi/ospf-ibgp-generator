@@ -54,7 +54,9 @@ def prefixlen(net):
 
 result = {gen_conf["node_list"][n]["name"]:{"igp_tunnels":{},"peers_iface":{},"bird/ibgp.conf":[],"bird/ibgp.conf.j2":"","resolvips":{},"ups":{},"updates":{},"reconnects":{},"downs":{},"self_net":{}} for n in gen_conf["node_list"]}
 
-def get_iface_full(name,af):
+def get_iface_full(name,af,tuntype):
+    if type(tuntype) == list and tuntype[0] == "phys":
+        return tuntype[1]
     n = gen_conf["iface_prefix"] + "-" + name + af
     if len(n) >= 16:
         raise ValueError(f"The interface name: {n} must be less than 16 (IFNAMSIZ) bytes.")
@@ -80,6 +82,8 @@ def get_net(ip,length):
         return None
     return ipaddress.ip_interface(str(ip) + "/" + str(length)).network
 
+tun_name = lambda x:x[0] if type(x) == list else x
+
 for id, node in gen_conf["node_list"].items():
     for id2, node2 in gen_conf["node_list"].items():
         if id == id2:
@@ -93,11 +97,11 @@ for id, node in gen_conf["node_list"].items():
                 continue
             tuntype1, wildcard1 = get_tun(af,node,id2)
             tuntype2, wildcard2 = get_tun(af,node2,id)
-            if (wildcard1,tunnelist.index(tuntype1)) > (wildcard2,tunnelist.index(tuntype2)):
-                tuntype = tuntype2
+            if (wildcard1,tunnelist.index(tun_name(tuntype1))) > (wildcard2,tunnelist.index(tun_name(tuntype2))):
+                tuntype = tun_name(tuntype2)
             else:
-                tuntype = tuntype1
-            if tuntype1 != tuntype2:
+                tuntype = tun_name(tuntype1)
+            if tun_name(tuntype1) != tun_name(tuntype2):
                 print("WARN: {af}: Tunnel type not match: {s}->{e}:{t1} , {e}->{s}:{t2}, selecting {tun}".format(af=af,s=node["name"],e=node2["name"],t1=tuntype1,t2=tuntype2,tun=tuntype))
             if tuntype == None:
                 continue
@@ -105,23 +109,25 @@ for id, node in gen_conf["node_list"].items():
             side_a = {
                 **node,
                 "id": id,
-                "ifname": get_iface_full(node["name"],af),
+                "ifname": get_iface_full(node["name"],af,tuntype2),
                 "endpoint": node["endpoints"][af],
                 "endpoint_ip": "$ip_" + get_bash_var_name(node["name"] + af),
-                "params": node["param"][tuntype] if tuntype in node["param"] else None
+                "params": node["param"][tuntype] if tuntype in node["param"] else None,
+                "tun_params": tuntype1[1:] if type(tuntype1) == list else None
             }
             side_b = {
                 **node2,
                 "id": id2,
-                "ifname": get_iface_full(node2["name"],af),
+                "ifname": get_iface_full(node2["name"],af,tuntype1),
                 "endpoint": node2["endpoints"][af],
                 "endpoint_ip": "$ip_" + get_bash_var_name(node2["name"] + af),
-                "params": node2["param"][tuntype] if tuntype in node2["param"] else None
+                "params": node2["param"][tuntype] if tuntype in node2["param"] else None,
+                "tun_params": tuntype2[1:] if type(tuntype2) == list else None
             }
             
             setiptemplate = jinja2.Template(open('setip.sh').read())
             MTU = min(node["MTU"],node2["MTU"])
-            MTU -= af_info[af]["MTU"]
+            MTU = MTU - af_info[af]["MTU"] if af_info[af]["MTU"] >= 0 else 0
             if side_a["endpoint"] == "NAT":
                 continue
             try:
@@ -129,7 +135,7 @@ for id, node in gen_conf["node_list"].items():
                     aconf, bconf = tunnels[tuntype](side_a,side_b)
                 else:
                     bconf, aconf = tunnels[tuntype](side_b,side_a)
-                MTU -= aconf["MTU"]
+                MTU = MTU - aconf["MTU"] if aconf["MTU"] >= 0 else 0
                 def postprocess(conf,side,idd,nod,side2):
                     integrate_up = True
                     if "{{setupippath}}" in conf["up"].replace(" ",""):

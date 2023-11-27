@@ -15,7 +15,8 @@ openvpnkey_db = {}
 
 af_info = {
     "-4":{"MTU":20},
-    "-6":{"MTU":40}
+    "-6":{"MTU":40},
+    "-cf":{"MTU":60},
 }
 
 def vars_load(var):
@@ -179,6 +180,31 @@ def get_gre(server,client):
         raise ValueError(f'Endpoint can\'t be NAT at gre tunnel: { server["id"] } ->  { client["id"] }' )
     return conf_s , conf_c
 
+def get_phys(server,client):
+    server_phys_name = server["tun_params"][0]
+    client_phys_name = client["tun_params"][0]
+    conf_s = {
+        "up": "",
+        "update": "",
+        "reconnect":"",
+        "down": f'ip addr flush dev {server_phys_name}\nip -6 addr flush dev {server_phys_name}',
+        "confs": {},
+        "MTU": -1
+    }
+    conf_c = {
+        "up": "",
+        "update": "",
+        "reconnect":"",
+        "down": f'ip addr flush dev {client_phys_name}\nip -6 addr flush dev {client_phys_name}' ,
+        "confs": {},
+        "MTU": -1
+    }
+    if server["endpoint"] == "NAT":
+        raise ValueError(f'Endpoint can\'t be NAT at gre tunnel: { client["id"] } ->  { server["id"] }' )
+    if client["endpoint"] == "NAT":
+        raise ValueError(f'Endpoint can\'t be NAT at gre tunnel: { server["id"] } ->  { client["id"] }' )
+    return conf_s , conf_c
+
 def get_openvpn(server,client):
     server["port"] = allocate_port(server["name"],client["ifname"],port_allocate_db,server["port_base"])
     ovpncfg = get_openvpn_config(server["id"],client["id"])
@@ -242,12 +268,11 @@ def get_v6ll(id,ip):
 
 tunnels = {
     None: None,
-    "gre": get_gre,
     "wg_udp2raw":get_wg_udp2raw,
-    "wg_high":get_wg,
     "openvpn": get_openvpn,
     "wg":get_wg,
-    
+    "gre": get_gre,
+    "phys": get_phys,
 }
 
 tunnelist = list(tunnels.keys())
