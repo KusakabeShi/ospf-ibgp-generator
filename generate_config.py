@@ -166,7 +166,7 @@ for id, node in gen_conf["node_list"].items():
                     # reconnect
                     conf["reconnect"] = "\n".join(filter(None,conf["reconnect"].split("\n"))) + "\n"
                     conf["reconnect"] = jinja2.Template(conf["reconnect"]).render(confpath = "igp_tunnels/" + side2["ifname"])
-                    conf["reconnect_info"] = {"ip":get_v6ll(side2["id"] ,net6ll),"ifname":side2["ifname"],"script":conf["reconnect"]}
+                    conf["reconnect_info"] = {"ip":get_v6ll(side2["id"] ,net6ll),"srcip":get_v6ll(side["id"],net6ll),"ifname":side2["ifname"],"script":conf["reconnect"]}
                     for ck,cv in conf["confs"].items():
                         conf["confs"][ck] = jinja2.Template(cv).render(confpath = "igp_tunnels/" + side2["ifname"])
                 postprocess(aconf,side_a,id,node,side_b)

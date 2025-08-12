@@ -46,7 +46,7 @@ update_wg_peer() {
 
 get_ip_down () {
     #1:ip 2:ifname
-    if ! ping -c 1 -W 3 "$1" -I "$2" >/dev/null 
+    if ! ping -c 1 -W 3 "$1" -I "$2" -I "$3" >/dev/null 
     then
         return 0 #success, means down
     fi
@@ -58,7 +58,7 @@ get_ip_down () {
 {% endfor %}
 
 {% for con in reconns -%}
-if get_ip_down "{{ con["ip"] }}" "{{ con["ifname"] }}"; then
+if get_ip_down "{{ con["ip"] }}" "{{ con["ifname"] }}" "{{ con["srcip"] }}"; then
     {{ con["script"] }}
 fi
 {% endfor %}
@@ -66,3 +66,4 @@ fi
 {% for update in updates -%}
 {{ update }}
 {% endfor %}
+
